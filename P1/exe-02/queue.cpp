@@ -1,70 +1,76 @@
 #include <iostream>
 using namespace std;
 
-struct Fila{
+struct Queue{
   int front, back;
-  int fila[10];
+  int queue[10];
 };
 
-bool Full(Fila &fila){
-  return ( (fila.back +1) % 10 == fila.front);
+void start(Queue &queue){
+  queue.front = -1;
 }
 
-bool Empty(Fila &fila){
-  return (fila.front == -1);
+bool full(Queue &queue){
+  return ( (queue.back +1) % 10 == queue.front);
 }
 
-void Enqueue(Fila &fila, int x){
-  if(Full(fila)) 
-    cout << "Fila cheia" << endl;
-  else if(Empty(fila)){
-    fila.front = fila.back = 0;
-    fila.fila[fila.back] = x;
-    cout << x << " Adicionado" << endl;
+bool empty(Queue &queue){
+  return (queue.front == -1);
+}
+
+void enqueue(Queue &queue, int x){
+  if(full(queue)) 
+    cout << "Queue full" << endl;
+  else if(empty(queue)){
+    queue.front = queue.back = 0;
+    queue.queue[queue.back] = x;
+    cout << x << " Added" << endl;
   }
   else{
-    fila.back = (fila.back + 1) % 10;
-    fila.fila[fila.back] = x;
-    cout << x << " Adicionado" << endl;
+    queue.back = (queue.back + 1) % 10;
+    queue.queue[queue.back] = x;
+    cout << x << " Added" << endl;
   }
 }
 
-void Dequeue(Fila &fila){
-  if(Empty(fila)) 
-    cout << "a Fila está vazia" << endl;
-  else if(fila.front == fila.back){
-    cout << fila.fila[fila.front] << " Removido" << endl;
-    fila.front = -1;
+void dequeue(Queue &queue){
+  if(empty(queue)) 
+    cout << "The queue is empty" << endl;
+  else if(queue.front == queue.back){
+    cout << queue.queue[queue.front] << " Removed" << endl;
+    queue.front = -1;
   }
   else{
-    cout << fila.fila[fila.front] << " Removido" << endl;
-    fila.front = (fila.front + 1) % 10;
+    cout << queue.queue[queue.front] << " Removed" << endl;
+    queue.front = (queue.front + 1) % 10;
   }
 }
 
-void Display(Fila &fila){
-  if(Empty(fila)) 
-    cout << "a Fila está vazia" << endl;
+void display(Queue &queue){
+  if(empty(queue)) 
+    cout << "The queue is empty" << endl;
+  else if(full(queue)) 
+    cout << "The queue is full" << endl;
   else{
-    cout << "Fila: ";
-    for(int i = fila.front; i != (fila.back + 1) % 10; i = (i + 1) % 10){
-      cout << fila.fila[i] << " ";
+    cout << "Queue: ";
+    for(int i = queue.front; i != (queue.back + 1) % 10; i = (i + 1) % 10){
+      cout << queue.queue[i] << " ";
     }
     cout << endl;
   }
 }
 
 int main() {
-  Fila f;
-  f.front = f.back = -1;
-  Enqueue(f, 1);
-  Enqueue(f, 2);
-  Enqueue(f, 3);
-  Display(f);
-  Enqueue(f, 4);
-  Display(f);
-  Dequeue(f);
-  Display(f);
+  Queue q;
+  start(q);
+  enqueue(q, 1);
+  enqueue(q, 2);
+  enqueue(q, 3);
+  display(q);
+  enqueue(q, 4);
+  display(q);
+  dequeue(q);
+  display(q);
 
   return 0;
 }
