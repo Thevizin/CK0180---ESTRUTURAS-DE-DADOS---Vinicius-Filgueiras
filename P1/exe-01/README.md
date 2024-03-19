@@ -1,5 +1,5 @@
 
-Exercício 1:
+###Exercício 1:
 
 1. Tenha um compilador C++ para usar quando necessário, sabendo que há diferentes caminhos para isso:
 
