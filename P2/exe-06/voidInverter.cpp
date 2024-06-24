@@ -1,38 +1,37 @@
 #include <iostream>
-
 using namespace std;
 
-void display(double *vetor, int size){
-    for(int i = 0; i < size; i++){
-        cout << vetor[i] << " ";
-    }
-    cout << endl;
+void begin(int *array, int n) {
+  for (int i = 0; i < n; i++) {
+    array[i] = i + 1;
+  }
 }
 
-void inverter (double *p, int n){
-    double *inicio = p;
-    double *fim = p + (n - 1);
-
-    while(inicio < fim){
-        double temp = *inicio;
-        *inicio = *fim;
-        *fim = temp;
-
-        inicio ++;
-        fim --;
-    }
+void inverter(int *p, int n) {
+  for (int i = 0; i < n / 2; i++) {
+    int temp = *(p + i); // This is similar to temp = p[i]
+    /* This is a technique called Pointer Indexing, that allows acessing
+       elements of an array using pointer arithmetic.
+    */
+    *(p + i) = *(p + n - i - 1);
+    *(p + n - i - 1) = temp;
+  }
 }
-int main(){
-    double vetor[] = {1.1, 2.2, 3.3, 4.4, 5.5};
-    int size = sizeof(vetor)/sizeof(vetor[0]);
 
-    cout << "Vetor Original: ";
-    display(vetor, size);
+void print(int *array, int n) {
+  cout << "The array is: ";
+  for (int i = 0; i < n; i++) {
+    cout << array[i] << " ";
+  }
+  cout << endl;
+}
 
-    inverter(vetor, size);
-
-    cout << "Vetor Invertido: ";
-    display(vetor, size);
-
-
+int main() {
+  int n = 10;
+  int array[n];
+  begin(array, n);
+  print(array, n);
+  inverter(array, n);
+  print(array, n);
+  return 0;
 }

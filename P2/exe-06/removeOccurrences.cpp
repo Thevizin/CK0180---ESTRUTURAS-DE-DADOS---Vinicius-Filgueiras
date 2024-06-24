@@ -1,52 +1,50 @@
 #include <iostream>
-
 using namespace std;
 
-void display(double *array, int size){
-    cout << endl;
-    cout << "Iniciando Display..." << endl;
-    for(int i=0; i < size; i++){
-        cout << array[i] << " ";
-    }
-    cout << endl << endl;
+void begin(double *array, int n) {
+  cout << "Starting array:\n";
+  for (int i = 0; i < n; i++) {
+    cin >> array[i];
+  }
 }
 
-void reduce(double *array, int &size, int place){
-    for(int i = place; i < size - 1; i ++){
-        array[i] = array[i+1];
-    }
-    size --;
+void print(double *array, int n) {
+  cout << "The array is: ";
+  for (int i = 0; i < n; i++) {
+    cout << array[i] << " ";
+  }
+  cout << endl;
 }
 
-void remove(double *array, int &size, double value){
-    int counter = size;
-    for(int i = 0; i<size; i++){
-        if(array[i] == value){
-            counter --;
-            reduce(array, size, i);
-            i--; 
-        }
+int removeOccurrences(double *p, int n, double x){
+  int v = 0;
+  for(int i = 0; i < n;){ //Here, we check if the value of the array is equal to x.
+    if(*(p+i) == x){
+      v ++;
+      for(int j = i; j < n - 1; j++){ //Here, we will change all the values of the array that are equal to x.
+        *(p+j) = *(p+j+1);
+      }
+      n --;
     }
-     cout << counter << " " << size << endl;
+    else{
+      i ++;
+    }
+  }
+  return v;
 }
 
-void adder(double *array, int size){
-    cout << "Adicione os valores do Array: " << endl;
-    for(int i = 0; i < size; i++){
-        cout << i + 1 << ": ";
-        cin >> array[i];
-    }
-}
 
-int main(){
-    int size;
-    cout << "Digite o tamanho do array: ";
-    cin >> size;
-    double *array = new double[size];
-    adder(array, size);
-    display(array, size);
-    remove(array, size, 2.0);
-    display(array, size);
-    delete[] array; 
-    return 0;
+int main() {
+  int n;
+  float x;
+  cout << "Enter the size of the array: ";
+  cin >> n;
+  double array[n];
+  begin(array, n);
+  print(array, n);
+  cout << "Enter the element you want to remove: ";
+  cin >> x;
+  n = n - removeOccurrences(array, n, x);
+  print(array, n);
+  return 0;
 }

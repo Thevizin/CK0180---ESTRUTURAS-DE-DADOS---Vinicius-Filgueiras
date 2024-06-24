@@ -1,47 +1,41 @@
 #include <iostream>
 using namespace std;
 
-void display(double *vetor, int size){
-    for(int i = 0; i < size; i++){
-        cout << vetor[i] << " ";
-    }
-    cout << endl;
+void begin(double *array, int n) {
+  cout << "Starting array:\n";
+  for (int i = 0; i < n; i++) {
+    cin >> array[i];
+  }
 }
 
-void adder(double *vetor, int size){
-    cout << "Enter the numbers you chose: " << endl;
-    for(int i= 0; i < size; i++){
-        cout << i + 1 <<": ";
-        cin >> vetor[i];
-    }
-    cout << endl;
+void inverter(double *p, int n) {
+  for (int i = 0; i < n / 2; i++) {
+    int temp = *(p + i); // This is similar to temp = p[i]
+    /* This is a technique called Pointer Indexing, that allows acessing
+       elements of an array using pointer arithmetic.
+    */
+    *(p + i) = *(p + n - i - 1);
+    *(p + n - i - 1) = temp;
+  }
+  cout << "The array was inverted\n";
 }
 
-void inverter(double *vetor, int size){
-    double *inicio = vetor;
-    double *fim = vetor + (size - 1);
-
-    while(inicio < fim){
-        double temp = *inicio;
-        *inicio = *fim;
-        *fim = temp;
-        
-        inicio ++;
-        fim --;
-    }
+void print(double *array, int n) {
+  cout << "The array is: ";
+  for (int i = 0; i < n; i++) {
+    cout << array[i] << " ";
+  }
+  cout << endl;
 }
 
-int main(){
-   double vetor[10]; int size;
-   cout << "Select a number from 1 to 10: ";
-   cin >> size;
-   adder(vetor, size);
-
-   cout << "Vetor Original: ";
-   display(vetor, size);
-   
-   inverter(vetor, size);
-   
-   cout << "Vetor Invertido: ";
-   display(vetor, size);
+int main() {
+  int n;
+  cout << "Enter the size of the array: ";
+  cin >> n;
+  double array[n];
+  begin(array, n);
+  print(array, n);
+  inverter(array, n);
+  print(array, n);
+  return 0;
 }
