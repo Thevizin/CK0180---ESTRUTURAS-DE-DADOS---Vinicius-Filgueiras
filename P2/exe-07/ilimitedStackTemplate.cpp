@@ -17,7 +17,7 @@ void stack_construct(Stack<T> &stack){
         exit(EXIT_FAILURE);
     }
     stack.capacity = INITIAL_CAPACITY;
-    stack.top = -1; //Empty Stack
+    stack.top = -1;
 }
 
 template<typename T>
@@ -29,9 +29,9 @@ void stack_destruct(Stack<T> &stack){
 template<typename T>
 void push(Stack<T> &stack, T value){
     if(stack.top == stack.capacity - 1){
-        cout << "Stack full, generating a new array..." << endl;
         stack.capacity = stack.capacity * 2;
-        T *newArray = new T[stack.capacity];
+        cout << "Stack is full, generating a array with size "<< stack.capacity << "..." << endl;
+        T  *newArray = new T [stack.capacity];
         if (newArray == nullptr) {
             cerr << "Memory allocation error." << endl;
             exit(EXIT_FAILURE);
@@ -49,52 +49,74 @@ void push(Stack<T> &stack, T value){
 
 template<typename T>
 T pop(Stack<T> &stack){
+    if(stack.top == (stack.capacity / 2) - 1 && stack.capacity >= 10){
+        stack.capacity = stack.capacity / 2;
+        cout << "The stack is too big for too few values, decreasing to "<< stack.capacity << "..." << endl;
+        T  *newArray = new T [stack.capacity];
+        if (newArray == nullptr) {
+            cerr << "Memory allocation error." << endl;
+            exit(EXIT_FAILURE);
+        }
+        for(int i = 0; i <= stack.top; i++){
+            newArray[i] = stack.array[i];
+        }
+        stack_destruct(stack);
+        stack.array = newArray;
+    }
     if (stack.top == -1) {
         cerr << "The stack is empty." << endl;
         exit(EXIT_FAILURE);
     }
-    T value = stack.array[stack.top];
+    T  value = stack.array[stack.top];
+    cout << stack.array[stack.top] << " Removed" << endl;
     stack.top --;
     return value;
 }
 
 template<typename T>
 void display(Stack<T> &stack){
-    if (stack.top == -1) cout << "The stack is empty." << endl;
+    if(stack.top == -1) cout << "The Stack is empty." << endl;
     else{
-        cout << "Stack: ";
+        
+        cout << "Size: " << stack.capacity << "\n" << "Stack: ";
         for(int i = 0; i <= stack.top; i++){
             cout << stack.array[i] << " ";
         }
-        cout << endl; 
+        cout << endl;
     }
 }
 
-int main() {
-    Stack<int> intStack;
-    stack_construct(intStack);
+int main(){
+    Stack<double> stackDb;
+    stack_construct(stackDb);
 
-    for (int i = 0; i < 20; ++i) {
-        push(intStack, i*10);
+    for(double i = 1; i < 21; ++i){
+        push(stackDb, i/10);
     }
 
-    display(intStack);
+    display(stackDb);
 
-    for (int i = 0; i < 10; ++i) {
-        cout << "Popped element: " << pop(intStack) << endl;
+    for(int i = 1; i < 19; ++i){
+        pop(stackDb);
     }
 
-    display(intStack);
+    display(stackDb);
 
-    // Testing with double
-    Stack<double> doubleStack;
-    stack_construct(doubleStack);
+    Stack<int> stackInt;
+    stack_construct(stackInt);
 
-    for (int i = 0; i < 5; ++i) {
-        push(doubleStack, i*3.14);
+    for(int i = 1; i < 21; ++i){
+        push(stackInt, i*10);
     }
 
-    display(doubleStack);
+    display(stackInt);
+
+    for(int i = 1; i < 19; ++i){
+        pop(stackInt);
+    }
+
+    display(stackInt);
 
     return 0;
+
 }
