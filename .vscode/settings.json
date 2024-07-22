@@ -1,6 +1,8 @@
 {
   "files.associations": {
-    "random": "cpp"
+    "random": "cpp",
+    "new": "cpp",
+    "iostream": "cpp"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
