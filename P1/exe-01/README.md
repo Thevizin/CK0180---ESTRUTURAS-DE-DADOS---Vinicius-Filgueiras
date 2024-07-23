@@ -1,17 +1,33 @@
+# Exercício 1
 
-###Exercício 1:
+## Preparação do Ambiente de Desenvolvimento C++
 
-1. Tenha um compilador C++ para usar quando necessário, sabendo que há diferentes caminhos para isso:
+1. **Tenha um compilador C++ disponível para uso. Existem diferentes caminhos para isso:**
 
-    Na pressa, basta buscar por "online C++ compiler" no Google, lembrando que também há aplicativos para celular (exemplo: para Android);
-    Para uso regular, o mais conveniente é ter um compilador instalado no computador. Instalar uma IDE pode ser uma alternativa rápida: Visual Studio Code (com seu pacote para C++), Code::Blocks, Dev-C++, etc.
-    Você também pode separar o editor de texto do compilador, que é como eu farei em sala. No Windows, o Notepad++ é um editor simples e popular, e para o compilador você pode instalar o MSYS2 e em seguida o pacote mingw-w64-i686-gcc.
-    Você pode testar a sua instalação com este programa:
-        
-        
-        #include <iostream>
+    - **Opção Rápida:**
+        - Procure por "online C++ compiler" no Google. Existem várias opções disponíveis para compilar código C++ diretamente no navegador.
+        - Há também aplicativos de compiladores C++ para celular (exemplo: para Android).
 
-    int main ()
-    {
-    std::cout << "Olá, mundo!\n";
+    - **Para Uso Regular:**
+        - Instalar uma IDE (Integrated Development Environment) pode ser uma alternativa conveniente. Algumas opções populares incluem:
+            - **Visual Studio Code** (com extensão para C++)
+            - **Code::Blocks**
+            - **Dev-C++**
+    
+    - **Separando o Editor de Texto do Compilador:**
+        - Esta é a abordagem que será utilizada em sala de aula.
+        - **No Windows:**
+            - Use o Notepad++ como editor de texto.
+            - Instale o MSYS2 para configurar o ambiente do compilador. Após instalar o MSYS2, instale o pacote `mingw-w64-i686-gcc`.
+    
+2. **Teste sua instalação com o seguinte programa:**
+
+    ```cpp
+    #include <iostream>
+
+    int main() {
+        std::cout << "Olá, mundo!\n";
+        return 0;
     }
+    ```
+---
