@@ -1,4 +1,4 @@
-# 📚 Estrutura de Dados 2024
+# 📚 Estrutura de Dados 2024.1
 
 **Professor:** Pablo Mayckon  
 **Aluno:** Vinícius Filgueiras  
