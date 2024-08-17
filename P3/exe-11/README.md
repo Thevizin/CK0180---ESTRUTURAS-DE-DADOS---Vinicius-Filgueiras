@@ -1,4 +1,4 @@
-###Exercício 11:
+# Exercício 11: **Lista duplamente encadeada**
 
 1. Complete a implementação de deque via lista duplamente encadeada iniciada em sala. Teste a implementação
 

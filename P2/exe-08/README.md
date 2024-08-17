@@ -1,4 +1,4 @@
-###Exercício 8:
+###Exercício 8: **Alocação Dinâmica de Vetores - Lista**
 
 1. Escreva uma implementação de fila ilimitada utilizando vetor (alocado dinamicamente). O vetor inicial deve ter tamanho 1 ou 2. Sempre que o vetor estiver cheio, utilize a estratégia de redimensionamento eficiente estudada na aula: substituí-lo por outro com o dobro do tamanho.
 

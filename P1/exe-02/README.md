@@ -1,4 +1,4 @@
-### Exercício 2
+### Exercício 2: **Fila e Pilha**
 
 1. **Complete a implementação de fila em C++ iniciada na aula.**
 

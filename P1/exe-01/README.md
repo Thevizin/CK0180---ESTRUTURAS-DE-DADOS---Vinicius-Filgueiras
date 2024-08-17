@@ -1,4 +1,4 @@
-# Exercício 1
+# Exercício 1: **Hello World**
 
 ## Preparação do Ambiente de Desenvolvimento C++
 
